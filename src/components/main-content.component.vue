@@ -21,8 +21,14 @@ export default {
 </script>
 
 <style scoped>
+
 h1{
     text-align: center;
+    font-family: Arial, sans-serif;
+
+}
+h2{
+    font-family: Arial, sans-serif;
 }
 .first-card{
     margin: 0 auto;
