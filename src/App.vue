@@ -7,7 +7,6 @@
                     <side-menu v-model:visible="sidebarVisible"></side-menu>
                 </template>
                 <template #end>
-                    <pv-button icon="pi pi-bars"/>
                 </template>
             </pv-menubar>
         </div>

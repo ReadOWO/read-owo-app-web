@@ -4,9 +4,8 @@
         </template>
         <template #content>
             <div>
-                <p class="align-">ONE PIECE</p>
-                <img src="https://i.pinimg.com/originals/4c/46/ee/4c46ee47e0710a6d928454f68fc4ee17.png"
-                     alt="One Piece">
+                <p>{{name}}</p>
+                <img :src="imageUrl" :alt="name">
             </div>
         </template>
         <template #footer>
@@ -17,11 +16,19 @@
 <script>
 export default {
     name: "article-card.component",
+    props: {
+        name: String,
+        imageUrl: String
+    }
 }
 </script>
 
 <style scoped>
 .article-content{
     width: 25%;
+}
+img{
+    max-width: 300px;
+    max-height: 300px;
 }
 </style>
