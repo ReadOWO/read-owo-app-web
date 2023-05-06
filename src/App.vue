@@ -7,25 +7,32 @@
                     <side-menu v-model:visible="sidebarVisible"></side-menu>
                 </template>
                 <template #end>
-                    <pv-button icon="pi pi-bars"/>
+                    <router-link v-for="item in items" :key="item.label" :to="item.to" class="p-button-text text-white">
+                        <pv-button class="p-button-text text-white">{{ item.label }}</pv-button>
+                    </router-link>
                 </template>
             </pv-menubar>
         </div>
-        <main-content-component></main-content-component>
+        <router-view></router-view>
         <footer-content-component></footer-content-component>
     </div>
 </template>
 
 <script>
-import MainContentComponent from "./components/main-content.component.vue";
+//import MainContentComponent from "./components/main-content.component.vue";
 import FooterContentComponent from "./components/footer-content.component.vue";
 import SideMenu from "./components/side-menu.component.vue";
 export default {
     name: 'App',
-    components: {FooterContentComponent, MainContentComponent, SideMenu},
+    components: {FooterContentComponent/*, MainContentComponent*/, SideMenu},
     data() {
         return {
-            sidebarVisible: false
+            sidebarVisible: false,
+            items: [
+                { label: "Home", to: "/home" },
+                { label: "Login", to: "/login" },
+                { label: "Register", to: "/register" },
+            ],
         };
     },
     methods: {
