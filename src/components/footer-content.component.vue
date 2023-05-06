@@ -32,6 +32,7 @@ export default {
     padding: 10px;
     color: white;
     height: 150px;
+    font-family: system-ui;
 }
 .footer-item {
     margin: 0 10px;
