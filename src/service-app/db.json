@@ -1,0 +1,28 @@
+{
+  "manga": [
+    {
+      "id": 1,
+      "title": "naruto",
+      "author": " alexander",
+      "url": "https://i.pinimg.com/originals/4c/46/ee/4c46ee47e0710a6d928454f68fc4ee17.png"
+    },
+    {
+      "id": 2,
+      "title": "one piece",
+      "author": " tokio",
+      "url": "https://demonslayer-hinokami.sega.com/img/purchase/digital-standard.jpg"
+    },
+    {
+      "id": 3,
+      "title": "dragon bal",
+      "author": " arikota",
+      "url": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx149332-adkSyOFY3c5U.jpg"
+    },
+    {
+      "id": 4,
+      "title": "kimetsu no yaiba",
+      "author": " lokira",
+      "url": "https://s4.anilist.co/file/anilistcdn/media/manga/cover/large/bx104494-xmWuGEwxzbfB.jpg"
+    }
+  ]
+}
