@@ -6,8 +6,12 @@
             <div class="prev-button" @click="prevBook">
                 <i class="fas fa-arrow-left fa-3x"></i>
             </div>
-            <p class="book-title">{{bookCard.title}}</p>
-            <img :src="bookCard.thumbnailUrl" :alt="name">
+            <transition-group name="book" tag="div" class="book-container">
+                <div v-for="(book, index) in visibleBooks" :key="book.id" class="book">
+                    <p class="book-title">{{book.title}}</p>
+                    <img :src="book.thumbnailUrl" :alt="name">
+                </div>
+            </transition-group>
             <div class="next-button" @click="nextBook">
                 <i class="fas fa-arrow-right fa-3x"></i>
             </div>
@@ -25,25 +29,24 @@ export default {
     },
     data() {
         return {
-            bookCard:{},
+            visibleBooks:[],
             currentBookIndex: 0
         };
     },
     async created() {
-        this.bookCard = this.booksCard[0]
-        console.log(this.bookCard);
+        this.visibleBooks = this.booksCard.slice(0, 3);
     },
     methods:{
         prevBook() {
             if (this.currentBookIndex > 0) {
-                this.currentBookIndex--
-                this.bookCard = this.booksCard[this.currentBookIndex]
+                this.currentBookIndex--;
+                this.visibleBooks = this.booksCard.slice(this.currentBookIndex, this.currentBookIndex + 3);
             }
         },
         nextBook() {
-            if (this.currentBookIndex < this.booksCard.length - 1) {
-                this.currentBookIndex++
-                this.bookCard = this.booksCard[this.currentBookIndex]
+            if (this.currentBookIndex < this.booksCard.length - 3) {
+                this.currentBookIndex++;
+                this.visibleBooks = this.booksCard.slice(this.currentBookIndex, this.currentBookIndex + 3);
             }
         }
     }
@@ -55,7 +58,7 @@ export default {
     list-style: none;
     margin: 0 auto;
     text-align: center;
-    max-width: 450px;
+    max-width: 1100px;
     max-height: 550px;
     position: relative;
 }
@@ -76,5 +79,23 @@ img{
     position: absolute;
     top: 50%;
     right: 20px;
+}
+.book-container {
+    display: flex;
+    justify-content: center;
+}
+
+.book {
+    margin: 0 10px;
+}
+
+.book-enter-active,
+.book-leave-active {
+    transition: all 500ms ease-in-out;
+}
+
+.book-enter,
+.book-leave-to {
+    opacity: 0;
 }
 </style>

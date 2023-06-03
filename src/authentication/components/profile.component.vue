@@ -1,6 +1,6 @@
 <template>
     <div>
-        <img src=".." alt="ProfileImage"/>
+        <img src="../public/images/fontProfile.png" alt="ProfileImage"/>
         <p>Nombre: {{ user.userName }}</p>
         <p>Email: {{ user.email }}</p>
     </div>

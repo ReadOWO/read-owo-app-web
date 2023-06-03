@@ -42,6 +42,12 @@ const router = createRouter({
             name: "profile",
             component: () => import("./authentication/components/profile.component.vue"),
             meta: { requiresAuth: true }
+        },
+        {
+            path: "/publish",
+            name: "publish",
+            component: () => import("./publish/components/your-artwork.component.vue"),
+            meta: { requiresAuth: true }
         }
     ]
 })

@@ -25,8 +25,8 @@ export default {
             user: {
                 id:0,
                 userName: "",
-                email: "",
-                password: "",
+                email: "brunodiaz@mail.com",
+                password: "password",
                 urlPhoto: "",
                 isAuthor: false
             },
@@ -41,7 +41,7 @@ export default {
         async login() {
             let responseUser = await this.userService.getAll();
             responseUser.data.forEach((check) => {
-                if (check.email === this.user.email) {
+                if (check.email === this.user.email && check.password === this.user.password) {
                     this.user=check;
                     this.isAuthenticated = true;
                     console.log(this.user)
