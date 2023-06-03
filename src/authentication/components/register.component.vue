@@ -4,15 +4,15 @@
         <form @submit.prevent="register" class="register-form">
             <div class="form-group">
                 <label>Nombre:</label>
-                <input type="text" v-model="name" required />
+                <input type="text" v-model="user.userName" required />
             </div>
             <div class="form-group">
                 <label>Email:</label>
-                <input type="email" v-model="email" required />
+                <input type="email" v-model="user.email" required />
             </div>
             <div class="form-group">
                 <label>Contraseña:</label>
-                <input type="password" v-model="password" required />
+                <input type="password" v-model="user.password" required />
             </div>
             <div class="form-group">
                 <label>Confirmar contraseña:</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="form-group">
                 <label>Número de teléfono:</label>
-                <input type="tel" v-model="phoneNumber" required />
+                <input type="tel" v-model="user.isAuthor" required />
             </div>
             <button type="submit" class="register-button">Registrarse</button>
         </form>
@@ -28,25 +28,38 @@
 </template>
 
 <script>
+import {UserService} from "@/publish/services/user-service";
+
 export default {
     data() {
         return {
-            name: "",
-            email: "",
-            password: "",
-            confirmPassword: "",
-            phoneNumber: "",
+            user: {
+                    userName: "",
+                    email: "",
+                    password: "",
+                    urlPhoto: "",
+                    isAuthor: false
+            },
+            confirmPassword: ""
         };
     },
+    async created() {
+        this.userService = new UserService();
+    },
     methods: {
-        register() {
-            if (this.password !== this.confirmPassword) {
+        async register() {
+            if (this.user.password !== this.confirmPassword) {
                 alert("Las contraseñas no coinciden.");
-                return;
             }
-            console.log("Registrarse con nombre:", this.name, "email:", this.email, "contraseña:", this.password, "y número de teléfono:", this.phoneNumber);
-            // Aquí puedes agregar tu lógica de registro
+            await this.userService.create(this.user);
+
+            console.log("Registrarse con nombre:", this.user.userName, "email:", this.user.email, "contraseña:", this.user.password, "y url de foto:", this.user.urlPhoto);
+            this.toLogin();
+
         },
+        toLogin(){
+            this.$router.push("/login");
+        }
     },
 };
 </script>

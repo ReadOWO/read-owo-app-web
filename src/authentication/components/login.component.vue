@@ -1,14 +1,14 @@
 <template>
     <div class="login-container">
         <h2>Iniciar sesión</h2>
-        <form @submit.prevent="login" class="login-form">
+        <form @submit.prevent="login" class="login-form" ref="formulario">
             <div class="form-group">
                 <label>Email:</label>
-                <input type="email" v-model="email" required />
+                <input type="email" v-model="user.email" required />
             </div>
             <div class="form-group">
                 <label>Contraseña:</label>
-                <input type="password" v-model="password" required />
+                <input type="password" v-model="user.password" required />
             </div>
             <button type="submit" class="login-button">Iniciar sesión</button>
         </form>
@@ -16,19 +16,49 @@
 </template>
 
 <script>
+import {UserService} from "@/publish/services/user-service";
+import {mapActions} from 'vuex'
 export default {
+    name:"login.component",
     data() {
         return {
-            email: "",
-            password: "",
+            user: {
+                id:0,
+                userName: "",
+                email: "",
+                password: "",
+                urlPhoto: "",
+                isAuthor: false
+            },
+            isAuthenticated:false
         };
     },
-    methods: {
-        login() {
-            console.log("Iniciar sesión con email:", this.email, "y contraseña:", this.password);
-            // Aquí puedes agregar tu lógica de autenticación
-        },
+    async created() {
+        this.userService=new UserService();
     },
+    methods: {
+        ...mapActions(['setUser', 'setIsAuthenticated']),
+        async login() {
+            let responseUser = await this.userService.getAll();
+            responseUser.data.forEach((check) => {
+                if (check.email === this.user.email) {
+                    this.user=check;
+                    this.isAuthenticated = true;
+                    console.log(this.user)
+                    this.setUser(this.user)
+                    this.setIsAuthenticated(this.isAuthenticated)
+                }
+                //else this.resetForm();
+            });
+            this.toHome();
+        },
+        resetForm(){
+            this.$refs.formulario.reset();
+        },
+        toHome(){
+            this.$router.push("/home");
+        }
+    }
 };
 </script>
 
