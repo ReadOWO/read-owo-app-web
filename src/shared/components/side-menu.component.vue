@@ -9,9 +9,9 @@
                         placeholder="Search..."
                         @input="onSearchInput"
                 />
-                <li class="menu-item">Creations</li>
-                <li class="menu-item">Publish your work</li>
-                <li class="menu-item">Authors</li>
+                <router-link to="/creation"><pv-button class="menu-item">Creations</pv-button></router-link>
+                <router-link to="/publish"><pv-button class="menu-item">Publish your work</pv-button></router-link>
+                <router-link to="/login"><pv-button class="menu-item">Authors</pv-button></router-link>
             </ul>
             <ul class="menu-list">
                 <li class="menu-item">Configuration</li>

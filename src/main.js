@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
+import router from './router'
+import store from './store';
 import PrimeVue from "primevue/config";
+import '@fortawesome/fontawesome-free/css/all.css'
 
 import 'primevue/resources/themes/md-light-indigo/theme.css';
 import 'primevue/resources/primevue.min.css';
@@ -18,6 +20,8 @@ import SelectButton from "primevue/selectbutton";
 import Toolbar from "primevue/toolbar";
 
 createApp(App)
+    .use(router)
+    .use(store)
     .use(PrimeVue,{ripple:true})
     .component('pv-card',Card)
     .component('pv-button',Button)
