@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: 'http://localhost:3000/api/v1/',
-    headers: {  }}
-);
+    baseURL: 'http://localhost:5013/api/v1/',
+    header: {}
+});
 
 export class HttpService {
     baseGet = '';
@@ -13,7 +13,7 @@ export class HttpService {
     }
 
     getById(id) {
-        return http.get(`${this.baseGet}/${id}`);
+        return http.get(`${this.baseGet}/${id}?bookId=${id}`);
     }
 
     create(data) {
