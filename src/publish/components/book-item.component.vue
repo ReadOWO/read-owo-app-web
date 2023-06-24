@@ -2,7 +2,7 @@
     <div class="container">
         <h1 class="title">{{ bookData.title }}</h1>
         <div class="content">
-            <img class="image" :src="bookData.thumbnailUrl" :alt="name">
+            <img class="image" :src="bookData.thumbnailUrl" :alt="bookData.title">
             <div class="synopsis">
                 {{ bookData.synopsis }}
             </div>
@@ -17,14 +17,13 @@ export default {
     data(){
         return{
             bookData:{}
-        }
+        };
     },
     async created() {
         const bookId = this.$route.params.id;
         this.bookService = new BookService();
         let responseBook=await this.bookService.getById(bookId);
         this.bookData=responseBook.data;
-        console.log("data:",this.bookData);
     },
     methods:{
     }

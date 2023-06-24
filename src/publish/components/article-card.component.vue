@@ -9,7 +9,7 @@
             <transition-group name="book" tag="div" class="book-container">
                 <div v-for="(book, index) in visibleBooks" :key="book.id" class="book">
                     <p class="book-title">{{book.title}}</p>
-                    <img :src="book.thumbnailUrl" :alt="name">
+                    <img :src="book.thumbnailUrl" :alt="book.title">
                 </div>
             </transition-group>
             <div class="next-button" @click="nextBook">

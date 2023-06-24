@@ -13,7 +13,7 @@
                         </router-link>
                         <div @mouseover="showLogout = true" @mouseleave="showLogout = false">
                             <router-link to="/profile">
-                                <img class="profile-image" :src="user.urlPhoto || '../public/images/offLogin.png'" alt="Profile"/>
+                                <img class="profile-image" :src="profile.urlPhoto || '../public/images/offLogin.png'" alt="Profile"/>
                             </router-link>
                             <button class="button-logout" v-show="showLogout && isAuthenticated" @click="logout">Log out</button>
                         </div>
@@ -34,7 +34,7 @@ import { mapState } from 'vuex'
 export default {
     name: 'App',
     components: {FooterContentComponent, MainContentComponent, SideMenu},
-    computed: {...mapState(['user','isAuthenticated'])},
+    computed: {...mapState(['profile','isAuthenticated'])},
     data() {
         return {
             sidebarVisible: false,
@@ -46,14 +46,7 @@ export default {
             this.sidebarVisible = !this.sidebarVisible;
         },
         logout() {
-            this.$store.commit('setUser', {
-                id:0,
-                userName: "",
-                email: "",
-                password: "",
-                urlPhoto: "",
-                isAuthor: false
-            });
+            this.$store.commit('setUser', {});
             this.$store.commit('setIsAuthenticated', false);
             // Redirige al usuario a la página de inicio de sesión
             this.$router.push('/login');

@@ -1,7 +1,7 @@
 import {HttpService} from "@/shared/services/base-service";
-export class BookService extends HttpService {
+export class ProfileService extends HttpService {
     constructor() {
         super();
-        this.baseGet = 'book';
+        this.baseGet = 'userprofiles';
     }
 }

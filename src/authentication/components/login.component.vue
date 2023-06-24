@@ -3,12 +3,12 @@
         <h2>Iniciar sesión</h2>
         <form @submit.prevent="login" class="login-form" ref="formulario">
             <div class="form-group">
-                <label>Email:</label>
-                <input type="email" v-model="user.email" required />
+                <label>User Name:</label>
+                <input v-model="userName" required />
             </div>
             <div class="form-group">
                 <label>Contraseña:</label>
-                <input type="password" v-model="user.password" required />
+                <input type="password" v-model="password" required />
             </div>
             <button type="submit" class="login-button">Iniciar sesión</button>
         </form>
@@ -16,37 +16,27 @@
 </template>
 
 <script>
-import {UserService} from "@/publish/services/user-service";
 import {mapActions} from 'vuex'
+import {ProfileService} from "@/authentication/services/Profile-service";
 export default {
     name:"login.component",
     data() {
         return {
-            user: {
-                id:0,
-                userName: "",
-                email: "brunodiaz@mail.com",
-                password: "password",
-                urlPhoto: "",
-                isAuthor: false
-            },
-            isAuthenticated:false
+            userName:"Batman Punk 2077",
+            password:"password",
         };
     },
     async created() {
-        this.userService=new UserService();
+        this.profileService=new ProfileService();
     },
     methods: {
-        ...mapActions(['setUser', 'setIsAuthenticated']),
+        ...mapActions(['setProfile', 'setIsAuthenticated']),
         async login() {
-            let responseUser = await this.userService.getAll();
-            responseUser.data.forEach((check) => {
-                if (check.email === this.user.email && check.password === this.user.password) {
-                    this.user=check;
-                    this.isAuthenticated = true;
-                    console.log(this.user)
-                    this.setUser(this.user)
-                    this.setIsAuthenticated(this.isAuthenticated)
+            let responseProfile = await this.profileService.getAll();
+            responseProfile.data.forEach((check) => {
+                if (check.name === this.userName && check.user.password === this.password) {
+                    this.setProfile(check)
+                    this.setIsAuthenticated(true)
                 }
                 //else this.resetForm();
             });
