@@ -33,7 +33,7 @@ import { mapState } from "vuex";
 
 export default {
     name: "your-artwork",
-    computed: { ...mapState(['user', 'isAuthenticated']) },
+    computed: { ...mapState(['profile', 'isAuthenticated']) },
     data() {
         return {
             publishedBooks: [],
@@ -55,7 +55,7 @@ export default {
             let responseBook = await this.bookService.getAll();
             let responseChapter = await this.chapterService.getAll();
             for (let bookAux of responseBook.data) {
-                if (this.user.id === bookAux.authorId) {
+                if (this.profile.id === bookAux.profileId) {
                     this.book = {
                         booksImage: bookAux.thumbnailUrl,
                         booksTitle: bookAux.title,
