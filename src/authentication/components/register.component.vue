@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import {UserService} from "@/publish/services/user-service";
+import {UserService} from "@/authentication/services/user-service";
 
 export default {
     data() {
