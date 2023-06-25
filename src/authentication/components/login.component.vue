@@ -28,7 +28,6 @@ export default {
         userName: "",
         email: "",
         password: "",
-        urlPhoto: "",
         isAuthor: false
       },
       isAuthenticated: false
