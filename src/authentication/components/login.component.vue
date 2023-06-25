@@ -1,17 +1,20 @@
 <template>
     <div class="login-container">
-        <h2>Iniciar sesión</h2>
+        <h2>LOG IN</h2>
         <form @submit.prevent="login" class="login-form" ref="formulario">
             <div class="form-group">
                 <label>User Name:</label>
                 <input v-model="userName" required />
             </div>
             <div class="form-group">
-                <label>Contraseña:</label>
+                <label>Password:</label>
                 <input type="password" v-model="password" required />
             </div>
-            <button type="submit" class="login-button">Iniciar sesión</button>
+            <button type="submit" class="login-button">LOG IN</button>
+          <p class="error-message" v-if="errorMessage">{{ errorMessage }}</p>
         </form>
+      <h2>DON'T HAVE AN ACCOUNT YET?</h2>
+      <button class="login-button" @click="goToRegister">REGISTER</button>
     </div>
 </template>
 
@@ -22,8 +25,9 @@ export default {
     name:"login.component",
     data() {
         return {
-            userName:"Batman Punk 2077",
-            password:"password",
+          userName:"",
+          password:"",
+          errorMessage: "",
         };
     },
     async created() {
@@ -38,10 +42,16 @@ export default {
                     this.setProfile(check)
                     this.setIsAuthenticated(true)
                 }
-                //else this.resetForm();
+                else {
+                  this.errorMessage = "Invalid username or password";
+                  this.resetForm();
+                }
             });
             this.toHome();
         },
+      goToRegister() {
+        this.$router.push("/register");
+      },
         resetForm(){
             this.$refs.formulario.reset();
         },
@@ -105,5 +115,9 @@ input {
 
 .login-button:hover {
     background-color: #424242;
+}
+.error-message {
+  color: black;
+  margin-top: 0.5rem;
 }
 </style>
