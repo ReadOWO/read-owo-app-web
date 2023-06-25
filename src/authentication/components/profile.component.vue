@@ -1,7 +1,7 @@
 <template>
   <div class="image-container">
     <img src="/images/fontProfile.png" alt="ProfileImage" class="center-image" />
-    <p>Nombre: {{ user.userName }}</p>
+    <p>Nombre: {{ user.name }}</p>
     <p>Email: {{ user.email }}</p>
   </div>
 </template>
