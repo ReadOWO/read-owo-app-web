@@ -1,28 +1,24 @@
 <template>
     <div class="register-container">
-        <h2>Registrarse</h2>
+        <h2>Register</h2>
         <form @submit.prevent="register" class="register-form">
             <div class="form-group">
-                <label>Nombre:</label>
-                <input type="text" v-model="user.userName" required />
+                <label>Name:</label>
+                <input type="text" v-model="user.name" required />
             </div>
             <div class="form-group">
                 <label>Email:</label>
                 <input type="email" v-model="user.email" required />
             </div>
             <div class="form-group">
-                <label>Contraseña:</label>
+                <label>Password:</label>
                 <input type="password" v-model="user.password" required />
             </div>
             <div class="form-group">
-                <label>Confirmar contraseña:</label>
+                <label>Confirm password:</label>
                 <input type="password" v-model="confirmPassword" required />
             </div>
-            <div class="form-group">
-                <label>Número de teléfono:</label>
-                <input type="tel" v-model="user.isAuthor" required />
-            </div>
-            <button type="submit" class="register-button">Registrarse</button>
+            <button type="submit" class="register-button">Register</button>
         </form>
     </div>
 </template>
@@ -34,10 +30,9 @@ export default {
     data() {
         return {
             user: {
-                    userName: "",
+                    name: "",
                     email: "",
                     password: "",
-                    urlPhoto: "",
                     isAuthor: false
             },
             confirmPassword: ""
@@ -49,13 +44,13 @@ export default {
     methods: {
         async register() {
             if (this.user.password !== this.confirmPassword) {
-                alert("Las contraseñas no coinciden.");
+                alert("Passwords don't match");
+                return console.log("Passwords don't match")
             }
             await this.userService.create(this.user);
 
-            console.log("Registrarse con nombre:", this.user.userName, "email:", this.user.email, "contraseña:", this.user.password, "y url de foto:", this.user.urlPhoto);
+            console.log("Register with name:", this.user.name, "email:", this.user.email, "password:", this.user.password);
             this.toLogin();
-
         },
         toLogin(){
             this.$router.push("/login");
