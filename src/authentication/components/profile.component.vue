@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <img src="../public/images/fontProfile.png" alt="ProfileImage"/>
-        <p>Nombre: {{ profile.name }}</p>
-        <p>Foto de Perfil:</p><img :src="profile.urlPhoto" :alt="profile.name">
+    <div class="image-container">
+        <img src="/images/fontProfile.png" alt="ProfileImage"  class="center-image"/>
+        <p>Name: {{ profile.name }}</p>
         <p>Email: {{ profile.user.email}}</p>
     </div>
 </template>
@@ -17,4 +16,14 @@ export default {
 </script>
 
 <style scoped>
+.image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.center-image {
+  width: 50%;
+  height: auto;
+}
 </style>
