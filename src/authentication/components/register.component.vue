@@ -1,28 +1,24 @@
 <template>
     <div class="register-container">
-        <h2>Registrarse</h2>
+        <h2>REGISTER</h2>
         <form @submit.prevent="register" class="register-form">
             <div class="form-group">
-                <label>Nombre:</label>
-                <input type="text" v-model="user.userName" required />
+                <label>Name:</label>
+                <input type="text" v-model="user.name" required />
             </div>
             <div class="form-group">
                 <label>Email:</label>
                 <input type="email" v-model="user.email" required />
             </div>
             <div class="form-group">
-                <label>Contraseña:</label>
+                <label>Password:</label>
                 <input type="password" v-model="user.password" required />
             </div>
             <div class="form-group">
-                <label>Confirmar contraseña:</label>
+                <label>Confirm password:</label>
                 <input type="password" v-model="confirmPassword" required />
             </div>
-            <div class="form-group">
-                <label>Número de teléfono:</label>
-                <input type="tel" v-model="user.isAuthor" required />
-            </div>
-            <button type="submit" class="register-button">Registrarse</button>
+            <button type="submit" class="register-button">REGISTER</button>
         </form>
     </div>
 </template>
@@ -34,10 +30,9 @@ export default {
     data() {
         return {
             user: {
-                    userName: "",
+                    name: "",
                     email: "",
                     password: "",
-                    urlPhoto: "",
                     isAuthor: false
             },
             confirmPassword: ""
