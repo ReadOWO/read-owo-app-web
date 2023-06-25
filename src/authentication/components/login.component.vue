@@ -1,64 +1,64 @@
 <template>
     <div class="login-container">
-        <h2>Iniciar sesión</h2>
-        <form @submit.prevent="login" class="login-form" ref="formulario">
+        <h2>LOG IN</h2>
+        <form @submit.prevent="login" class="login-form" ref="formulario" v-if="!isAuthenticated">
             <div class="form-group">
                 <label>Email:</label>
                 <input type="email" v-model="user.email" required />
             </div>
             <div class="form-group">
-                <label>Contraseña:</label>
+                <label>Password:</label>
                 <input type="password" v-model="user.password" required />
             </div>
-            <button type="submit" class="login-button">Iniciar sesión</button>
+            <button type="submit" class="login-button">LOG IN</button>
         </form>
     </div>
 </template>
 
 <script>
-import {UserService} from "@/publish/services/user-service";
-import {mapActions} from 'vuex'
+import { UserService } from "@/publish/services/user-service";
+import { mapActions } from "vuex";
+
 export default {
-    name:"login.component",
-    data() {
-        return {
-            user: {
-                id:0,
-                userName: "",
-                email: "brunodiaz@mail.com",
-                password: "password",
-                urlPhoto: "",
-                isAuthor: false
-            },
-            isAuthenticated:false
-        };
-    },
-    async created() {
-        this.userService=new UserService();
-    },
-    methods: {
-        ...mapActions(['setUser', 'setIsAuthenticated']),
-        async login() {
-            let responseUser = await this.userService.getAll();
-            responseUser.data.forEach((check) => {
-                if (check.email === this.user.email && check.password === this.user.password) {
-                    this.user=check;
-                    this.isAuthenticated = true;
-                    console.log(this.user)
-                    this.setUser(this.user)
-                    this.setIsAuthenticated(this.isAuthenticated)
-                }
-                //else this.resetForm();
-            });
-            this.toHome();
-        },
-        resetForm(){
-            this.$refs.formulario.reset();
-        },
-        toHome(){
-            this.$router.push("/home");
+  name: "login.component",
+  data() {
+    return {
+      user: {
+        id: 0,
+        userName: "",
+        email: "",
+        password: "",
+        urlPhoto: "",
+        isAuthor: false
+      },
+      isAuthenticated: false
+    };
+  },
+  methods: {
+    ...mapActions(["setUser", "setIsAuthenticated"]),
+    async login() {
+      let responseUser = await this.userService.getAll();
+      responseUser.data.forEach((check) => {
+        if (check.email === this.user.email && check.password === this.user.password) {
+          this.user = check;
+          this.isAuthenticated = true;
+          console.log(this.user);
+          this.setUser(this.user);
+          this.setIsAuthenticated(this.isAuthenticated);
         }
+      });
+      this.toHome();
+    },
+    resetForm() {
+      this.$refs.formulario.reset();
+    },
+    toHome() {
+      this.$router.push("/home");
     }
+  },
+  created() {
+    this.userService = new UserService();
+  }
 };
 </script>
 
