@@ -1,17 +1,19 @@
 <template>
     <div class="login-container">
-        <h2>LOG IN</h2>
-        <form @submit.prevent="login" class="login-form" ref="formulario" v-if="!isAuthenticated">
-            <div class="form-group">
-                <label>Email:</label>
-                <input type="email" v-model="user.email" required />
-            </div>
-            <div class="form-group">
-                <label>Password:</label>
-                <input type="password" v-model="user.password" required />
-            </div>
-            <button type="submit" class="login-button">LOG IN</button>
-        </form>
+       <h2>LOG IN</h2>
+       <form @submit.prevent="login" class="login-form" ref="formulario" v-if="!isAuthenticated">
+           <div class="form-group">
+               <label>Email:</label>
+               <input type="email" v-model="user.email" required />
+           </div>
+           <div class="form-group">
+               <label>Password:</label>
+               <input type="password" v-model="user.password" required />
+           </div>
+           <button type="submit" class="login-button">LOG IN</button>
+       </form>
+       <h2>NOT HAVE AN ACCOUNT?</h2>
+      <button class="login-button" @click="goToRegister">REGISTER</button>
     </div>
 </template>
 
@@ -53,6 +55,9 @@ export default {
     },
     toHome() {
       this.$router.push("/home");
+    },
+    goToRegister() {
+      this.$router.push("/register");
     }
   },
   created() {
