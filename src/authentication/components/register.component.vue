@@ -7,7 +7,7 @@
                 <input type="text" v-model="user.name" required />
             </div>
           <div class="form-group">
-            <label>Uer Name:</label>
+            <label>User Name:</label>
             <input type="text" v-model="userProfile.name" required />
           </div>
             <div class="form-group">
@@ -43,7 +43,7 @@ export default {
             name: "",
             userId: "",
           },
-            confirmPassword: ""
+          confirmPassword: ""
         };
     },
     async created() {
@@ -51,23 +51,23 @@ export default {
         this.profileService = new ProfileService();
     },
     methods: {
-        async register() {
-            if (this.user.password !== this.confirmPassword) {
-                alert("Passwords don't match");
-                return console.log("Passwords don't match")
-            }
-            await this.userService.create(this.user)
-                .then(createdUser=>{
-                  this.userProfile.userId = createdUser.data.id;
-                  console.log(createdUser.data.id)
-                  return this.profileService.create(this.userProfile);
-                });
-            console.log("Register with name:", this.user.name, "email:", this.user.email, "password:", this.user.password);
-            this.toLogin();
-        },
-        toLogin(){
-            this.$router.push("/login");
+      async register() {
+        if (this.user.password !== this.confirmPassword) {
+          alert("Passwords don't match");
+          return;
         }
+        await this.userService.create(this.user)
+            .then(createdUser=>{
+              this.userProfile.userId = createdUser.data.id;
+              console.log(createdUser.data.id)
+              return this.profileService.create(this.userProfile);
+            });
+        console.log("Register with name:", this.user.name, "email:", this.user.email, "password:", this.user.password, "userName:", this.userProfile.name);
+        this.toLogin();
+      },
+      toLogin(){
+        this.$router.push("/login");
+      }
     },
 };
 </script>
