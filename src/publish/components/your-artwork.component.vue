@@ -1,15 +1,15 @@
 <template>
     <div>
-        <h1 class="text-center">Todas las historias comienzan con una simple palabra</h1>
-        <h3>Tus publicaciones</h3>
+        <h1 class="text-center">Every story begins with a single WORD</h1>
+        <h3>Your Work</h3>
         <table>
             <thead>
             <tr>
-                <th>ILUSTRACCION</th>
-                <th>TITULO</th>
-                <th>CANTIDAD DE CAPITULOS</th>
-                <th>FECHA DE PUBLICACION</th>
-                <TH>ACCIONES</TH>
+                <th>PHOTO</th>
+                <th>TITLE</th>
+                <th>NUMBER OF CHAPTERS</th>
+                <th>PUBLICATION DATE</th>
+                <TH>ACTIONS</TH>
             </tr>
             </thead>
             <tbody>
@@ -63,7 +63,7 @@ export default {
                         chaptersNumber: 0
                     };
                     for (let chapterAux of responseChapter.data) {
-                        if (bookAux.id === chapterAux.bookId) {
+                        if (bookAux.id === chapterAux.book.id) {
                             this.book.chaptersNumber += 1;
                         }
                     }
