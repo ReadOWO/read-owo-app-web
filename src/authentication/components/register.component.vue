@@ -6,6 +6,10 @@
                 <label>Name:</label>
                 <input type="text" v-model="user.name" required />
             </div>
+          <div class="form-group">
+            <label>Uer Name:</label>
+            <input type="text" v-model="userProfile.name" required />
+          </div>
             <div class="form-group">
                 <label>Email:</label>
                 <input type="email" v-model="user.email" required />
@@ -25,21 +29,26 @@
 
 <script>
 import {UserService} from "@/authentication/services/user-service";
+import {ProfileService} from "@/authentication/services/Profile-service";
 
 export default {
     data() {
         return {
-            user: {
-                    name: "",
-                    email: "",
-                    password: "",
-                    isAuthor: false
-            },
+          user: {
+            name: "",
+            email: "",
+            password: "",
+          },
+          userProfile:{
+            name: "",
+            userId: "",
+          },
             confirmPassword: ""
         };
     },
     async created() {
         this.userService = new UserService();
+        this.profileService = new ProfileService();
     },
     methods: {
         async register() {
@@ -47,8 +56,12 @@ export default {
                 alert("Passwords don't match");
                 return console.log("Passwords don't match")
             }
-            await this.userService.create(this.user);
-
+            await this.userService.create(this.user)
+                .then(createdUser=>{
+                  this.userProfile.userId = createdUser.data.id;
+                  console.log(createdUser.data.id)
+                  return this.profileService.create(this.userProfile);
+                });
             console.log("Register with name:", this.user.name, "email:", this.user.email, "password:", this.user.password);
             this.toLogin();
         },
