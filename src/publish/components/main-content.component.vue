@@ -48,7 +48,6 @@ export default {
 h1{
     text-align: center;
     font-family: Arial, sans-serif;
-
 }
 .article-container{
     display: flex;
