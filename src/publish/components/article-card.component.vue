@@ -9,7 +9,7 @@
             <transition-group name="book" tag="div" class="book-container">
                 <div v-for="(book, index) in visibleBooks" :key="book.id" class="book">
                     <p class="book-title">{{book.title}}</p>
-                    <img :src="book.thumbnailUrl" :alt="book.title">
+                    <img :src="book.thumbnailUrl" :alt="book.title" @click="this.showBookInfo(book)">
                 </div>
             </transition-group>
             <div class="next-button" @click="nextBook">
@@ -48,7 +48,10 @@ export default {
                 this.currentBookIndex++;
                 this.visibleBooks = this.booksCard.slice(this.currentBookIndex, this.currentBookIndex + 3);
             }
-        }
+        },
+      showBookInfo(book) {
+        this.$router.push({ name: 'book-item', params: { id: book.id } });
+      }
     }
 }
 </script>
