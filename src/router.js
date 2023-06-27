@@ -48,6 +48,12 @@ const router = createRouter({
             name: "publish",
             component: () => import("./publish/components/your-artwork.component.vue"),
             meta: { requiresAuth: true }
+        },
+        {
+            path: "/create",
+            name: "create",
+            component: ()=>import("./publish/components/create.vue"),
+            meta: { requiresAuth: true}
         }
     ]
 })
