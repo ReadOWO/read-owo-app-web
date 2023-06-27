@@ -4,7 +4,8 @@
         <div class="content">
             <img class="image" :src="bookData.thumbnailUrl" :alt="bookData.title">
             <div class="synopsis">
-                {{ bookData.synopsis }}
+              <h3>SYNOPSIS: </h3>
+              {{ bookData.synopsis }}
             </div>
         </div>
     </div>
@@ -31,6 +32,10 @@ export default {
 </script>
 
 <style scoped>
+h1{
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
 .container {
     display: inline-block;
     text-align: center;
