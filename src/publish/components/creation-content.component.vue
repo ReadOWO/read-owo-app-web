@@ -5,13 +5,13 @@
             <ul>
                 <li v-for="(book, index) in books" :key="book.id">
                     <p class="book-title">{{ book.title }}</p>
-                    <img class="img-container" :src="book.thumbnailUrl" :alt="name">
+                    <img class="img-container" :src="book.thumbnailUrl" :alt="book.name" @click="this.showBookInfo(book)">
                 </li>
             </ul>
         </div>
     </div>
     <div v-for="(books, genre) in booksByGenre" :key="genre">
-        <h1>{{ genre }}</h1>
+      <h1>{{ genre.toUpperCase() }}</h1>
         <div class="article-container">
             <ul>
                 <li v-for="(book, index) in books" :key="book.id">
@@ -77,7 +77,10 @@ export default {
             });
             new Date().toISOString().slice(0, 10);
             console.log(Date());
-        }
+        },
+      showBookInfo(book) {
+        this.$router.push({ name: 'book-item', params: { id: book.id } });
+      }
     }
 }
 </script>
