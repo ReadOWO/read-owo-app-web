@@ -3,7 +3,7 @@
         <div class="toolbar-conteiner">
             <pv-menubar class="sticky bg-blue-500">
                 <template #start>
-                    <pv-button label="Opciones" icon="pi pi-bars" @click="toggleSidebar"/>
+                    <pv-button label="Menu" icon="pi pi-bars" @click="toggleSidebar"/>
                     <side-menu v-model:visible="sidebarVisible"></side-menu>
                 </template>
                 <template #end>
