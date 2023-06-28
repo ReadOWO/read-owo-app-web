@@ -9,11 +9,11 @@
                 <template #end>
                     <div class="profile-conteiner">
                         <router-link to="/home">
-                            <img class="home-image" src="../public/images/Logo.png" alt="Home"/>
+                            <img class="home-image" src="/images/Logo.png" alt="Home"/>
                         </router-link>
                         <div @mouseover="showLogout = true" @mouseleave="showLogout = false">
                             <router-link to="/profile">
-                                <img class="profile-image" :src="profile.urlPhoto || '../public/images/offLogin.png'" alt="Profile"/>
+                                <img class="profile-image" :src="profile.urlPhoto || '/images/offLogin.png'" alt="Profile"/>
                             </router-link>
                             <button class="button-logout" v-show="showLogout && isAuthenticated" @click="logout">Log out</button>
                         </div>
