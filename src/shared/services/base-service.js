@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const http = axios.create({
-    baseURL: 'http://mangalounge-001-site1.itempurl.com/api/v1/',
+    baseURL: 'http://readowo-001-site1.htempurl.com/api/v1',
     header: {}
 });
 
