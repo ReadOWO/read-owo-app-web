@@ -98,6 +98,7 @@ export default {
   border-radius: 1rem;
   max-width: 1000px;
   margin: 2rem auto;
+  font-family: Arial, sans-serif;
 }
 .genres-group {
   display: flex;

@@ -1,16 +1,18 @@
 <template>
     <div>
       <h1 class="text-center">Every story begins with a single WORD</h1>
-      <h3>Your Work</h3>
-      <button @click="saveBook" class="p-button p-button-rounded p-button-success">PUBLISH</button>
+      <pv-menubar class="elements justify-content-center flex-wrap gap-8" >
+        <template #start><h3>Your Work</h3></template>
+        <template #end><pv-button @click="saveBook" class="p-button p-button-rounded p-button-success ">PUBLISH</pv-button></template>
+      </pv-menubar>
       <table>
         <thead>
           <tr>
-            <th>PHOTO</th>
-            <th>TITLE</th>
-            <th>NUMBER OF CHAPTERS</th>
-            <th>PUBLICATION DATE</th>
-            <TH>ACTIONS</TH>
+            <th><p>PHOTO</p></th>
+            <th><p>TITLE</p></th>
+            <th><p>NUMBER OF CHAPTERS</p></th>
+            <th><p>PUBLICATION DATE</p></th>
+            <th><p>ACTIONS</p></th>
           </tr>
         </thead>
         <tbody>
@@ -21,7 +23,7 @@
             <td>{{ book.booksDate }}</td>
             <td>
               <pv-button
-                  icon="pi pi-trash" class="p-button-text p-button-rounded"
+                  aria-label="Erase" icon="pi pi-trash" class="p-button-text p-button-rounded" size="large"
                   @click="deleteBook(book)"
               />
             </td>
@@ -96,6 +98,14 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+h1, h3, p, td{
+  font-family: Arial, sans-serif;
+}
+h3{
+  display: inline-block;
+  margin: auto;
+}
 .text-center {
     text-align: center;
 }
@@ -109,4 +119,5 @@ th, td {
     text-align: center;
     vertical-align: middle;
 }
+
 </style>

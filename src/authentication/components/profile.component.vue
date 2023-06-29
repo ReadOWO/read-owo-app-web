@@ -21,6 +21,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  font-family: Arial, sans-serif;
 }
 .center-image {
   width: 50%;

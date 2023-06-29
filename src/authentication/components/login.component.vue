@@ -13,7 +13,7 @@
             <button type="submit" class="login-button">LOG IN</button>
           <p class="error-message" v-if="errorMessage">{{ errorMessage }}</p>
         </form>
-      <h2>DON'T HAVE AN ACCOUNT YET?</h2>
+      <h4>DON'T HAVE AN ACCOUNT YET?</h4>
       <button class="login-button" @click="goToRegister">REGISTER</button>
     </div>
 </template>
@@ -63,6 +63,8 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -72,13 +74,18 @@ export default {
     border-radius: 1rem;
     max-width: 1000px;
     margin: 2rem auto;
+    font-family: Arial, sans-serif;
 }
 
 h2 {
     color: #212121; /* Negro */
     margin-bottom: 1rem;
 }
-
+h4{
+    margin-block-start: 2em;
+    margin-block-end: 0;
+    font-weight: normal;
+}
 .login-form {
     display: flex;
     flex-direction: column;

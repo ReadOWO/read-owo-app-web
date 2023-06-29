@@ -1,22 +1,28 @@
 <template>
   <pv-sidebar :visible="visible" v-on:update:visible="updateVisible">
     <div class="menu-container">
-      <ul class="menu-list">
+      <ul class="menu-list ">
         <li @click="closesidebar" class="menu-item">
           <i class="pi pi-bars"></i> RETURN
         </li>
-        <input
-            type="search"
-            class="search-input"
-            placeholder="Search..."
-            @input="onSearchInput"
-        />
-        <router-link to="/creation" class="menu-item">
-          <pv-button>Creations</pv-button>
-        </router-link>
-        <router-link to="/publish" class="menu-item">
-          <pv-button>Your Work</pv-button>
-        </router-link>
+        <li class="flex flex-wrap" style="padding: 12px 5px;">
+          <input
+              type="search"
+              class="search-input"
+              placeholder="Search..."
+              @input="onSearchInput"
+          />
+        </li>
+        <li class="flex flex-wrap">
+          <router-link to="/creation" class="menu-item">
+            <pv-button text>Creations</pv-button>
+          </router-link>
+        </li>
+        <li class="flex flex-wrap">
+          <router-link to="/publish" class="menu-item">
+            <pv-button text>Your Work</pv-button>
+          </router-link>
+        </li>
       </ul>
       <ul class="menu-list">
         <li class="menu-item">Configuration</li>
@@ -57,11 +63,12 @@ export default {
   list-style: none;
   padding: 0;
   margin: 0;
+
 }
 
 .menu-item {
   cursor: pointer;
-  padding: 12px 24px;
+  padding: 12px 5px;
   font-size: 18px;
   font-family: "Arial", sans-serif;
   line-height: 1.6;
@@ -82,4 +89,6 @@ export default {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+
 </style>

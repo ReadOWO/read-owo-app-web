@@ -3,17 +3,17 @@
         <div class="toolbar-conteiner">
             <pv-menubar class="sticky bg-blue-500">
                 <template #start>
-                    <pv-button label="Opciones" icon="pi pi-bars" @click="toggleSidebar"/>
+                    <pv-button label="Menu" icon="pi pi-bars" @click="toggleSidebar"/>
                     <side-menu v-model:visible="sidebarVisible"></side-menu>
                 </template>
                 <template #end>
                     <div class="profile-conteiner">
                         <router-link to="/home">
-                            <img class="home-image" src="../public/images/Logo.png" alt="Home"/>
+                            <img class="home-image" src="/images/Logo.png" alt="Home"/>
                         </router-link>
                         <div @mouseover="showLogout = true" @mouseleave="showLogout = false">
                             <router-link to="/profile">
-                                <img class="profile-image" :src="profile.urlPhoto || '../public/images/offLogin.png'" alt="Profile"/>
+                                <img class="profile-image" :src="profile.urlPhoto || '/images/offLogin.png'" alt="Profile"/>
                             </router-link>
                             <button class="button-logout" v-show="showLogout && isAuthenticated" @click="logout">Log out</button>
                         </div>
