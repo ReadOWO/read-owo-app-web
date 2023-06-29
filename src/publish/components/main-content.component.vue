@@ -7,7 +7,7 @@
         <h1>What You May Like</h1>
         <div class="article-container">
             <ul>
-                <li v-for="(book, index) in books" :key="book.id">
+                <li v-for="(book, index) in books.slice(0, 5)" :key="book.id">
                     <p class="book-title">{{ book.title }}</p>
                     <img class="img-container" :src="book.thumbnailUrl" :alt="book.title" @click="this.showBookInfo(book)">
                 </li>
