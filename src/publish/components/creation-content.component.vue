@@ -16,7 +16,7 @@
             <ul>
                 <li v-for="(book, index) in books" :key="book.id">
                     <p class="book-title">{{ book.title }}</p>
-                    <img class="img-container" :src="book.thumbnailUrl" :alt="name">
+                    <img class="img-container" :src="book.thumbnailUrl" :alt="name" @click="this.showBookInfo(book)">
                 </li>
             </ul>
         </div>
