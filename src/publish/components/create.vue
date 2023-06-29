@@ -18,6 +18,13 @@
         <label>Photo Url:</label>
         <input type="text" v-model="book.thumbnailUrl" required />
       </div>
+      <div class="form-group genres-group">
+        <label>Genre:</label>
+        <select v-model="selectedGenreId" required class="select-genre">
+          <option value="">Select Genre</option>
+          <option v-for="genre in genres" :key="genre.id" :value="genre.id">{{ genre.name.toUpperCase() }}</option>
+        </select>
+      </div>
       <button type="submit" class="create-button">PUBLISH</button>
     </form>
   </div>
@@ -26,6 +33,8 @@
 <script>
 import {BookService} from "@/publish/services/book-service";
 import {mapState} from "vuex";
+import {BookGenreService} from "@/publish/services/book-genre-service";
+import {GenreService} from "@/publish/services/genre-service";
 export default {
   name: "create",
   computed: { ...mapState(['profile', 'isAuthenticated']) },
@@ -40,16 +49,40 @@ export default {
         bookStatusId: 1,
         sagaId: 1,
         languageId: 1
-      }
+      },
+      bookGenre: {
+        bookId: "",
+        genreId: ""
+      },
+      genres: [],
+      selectedGenreId: ""
     };
   },
   async created() {
     this.bookService = new BookService();
+    this.bookGenreService = new BookGenreService();
+    this.genreService = new GenreService();
+    await this.getGenres();
   },
   methods:{
     async create(){
       this.book.profileId = this.profile.id
-      await this.bookService.create(this.book)
+      const response = await this.bookService.create(this.book);
+      const bookId = response.data.id;
+      await this.createBookGenre(bookId, this.selectedGenreId);
+      this.toPublish();
+    },
+    async getGenres(){
+      const response = await this.genreService.getAll();
+      this.genres = response.data;
+    },
+    async createBookGenre(bookId, genreId){
+      this.bookGenre.genreId = genreId;
+      this.bookGenre.bookId = bookId;
+      await this.bookGenreService.create(this.bookGenre);
+    },
+    toPublish(){
+      this.$router.push("/publish");
     }
   }
 }
@@ -66,7 +99,11 @@ export default {
   max-width: 1000px;
   margin: 2rem auto;
 }
-
+.genres-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 h2 {
   color: #212121; /* Negro */
   margin-bottom: 1rem;
@@ -108,5 +145,14 @@ input {
 
 .create-button:hover {
   background-color: #424242;
+}
+.select-genre {
+  padding: 0.5rem;
+  border: 1px solid;
+  border-radius: 15px;
+  font-size: 1rem;
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  background-size: 16px;
 }
 </style>
